@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+* {
+    font-family: "Open Sans", helvetica, sans; 
+    font-size: 50pt;
+    color: white;
+    }
+body {
+    background-color: rgb(0,0,80);
+    }
+    #Container {
+    width: 100%;
+    }
+    #Container {
+    padding: 0pt 10pt 0pt 10pt;
+    }
+.Sender, #BackSchalter {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    height: 100pt;
+    }
+.Sender:hover, #BackSchalter:hover {
+    color: yellow;
+    border-color: yellow;
+}
+#BackSchalter {
+    font-size: 80pt;
+    cursor: pointer;
+    }
+    #Playing {
+    width: 60pt;
+    text-align: center;
+    }
+</style>
+<script type="text/javascript">
+    
+     function ZeigeSenderliste() {
+        const AlleSender = document.getElementsByClassName("Sender");
+            for (let i = 0; i < AlleSender.length; i++) {
+                AlleSender[i].style.display="block";
+            }
+         const AlleAudioPlayer = document.getElementsByClassName("AudioPlayer");
+            for (let i = 0; i < AlleAudioPlayer.length; i++) {
+                AlleAudioPlayer[i].pause();
+            }
+         document.getElementById("AktiverSender").style.display = "none";
+         document.getElementById("BackSchalter").innerHTML = "";
+     }
+     function SpieleSender(SenderID) {
+        const AlleSender = document.getElementsByClassName("Sender");
+            for (let i = 0; i < AlleSender.length; i++) {
+                AlleSender[i].style.display="none";
+            }
+        const AktiverAudioPlayer = document.getElementById(SenderID).getElementsByClassName("AudioPlayer")[0];
+             AktiverAudioPlayer.play();
+        document.getElementById("AktiverSender").innerHTML = SenderID;
+        document.getElementById("AktiverSender").style.display = "block";
+        document.getElementById("BackSchalter").innerHTML = '&larr;' + '&nbsp;<img id="Playing" src="playing.gif" />';
+     }
+</script>
+</head>
+<body>
+    <div id="Container">
+        <div id="BackSchalter" onclick="ZeigeSenderliste()"></div>
+        <div id="AktiverSender"></div>
+        <div id="SenderListe">
+            <div class="Sender" onclick="SpieleSender(this.id)" id="Deutschlandradio">
+            Deutschlandradio
+            <audio class="AudioPlayer">
+                <source src="https://d131.rndfnk.com/ard/dlf/01/mp3/128/stream.mp3?aggregator=web&amp;cid=01FBPWZ12X2XN8SDSMBZ7X0ZTT&amp;sid=323cgJbX6IdQBpLNffXdnUCbUhh&amp;token=kEB4iGmjw1n7QQDMgjeaC7lvZWlHXgaRFc1IlGong_M&amp;tvf=0UI4ixD2YBhkMTMxLnJuZGZuay5jb20" type="audio/mpeg">
+            </audio>
+            </div>
+            <div class="Sender" onclick="SpieleSender(this.id)" id="Freies Radio Salzkammergut" >
+            Freies Radio Salzkammergut
+            <audio class="AudioPlayer">
+                <source src="https://streaming.xaok.org/frs.ogg" type="audio/ogg">
+            </audio>
+            </div>
+            <div class="Sender" onclick="SpieleSender(this.id)" id="Jazz FM" >
+            Jazz FM
+            <audio class="AudioPlayer">
+                <source src="http://stream.zeno.fm/mhexkyn5a5zuv" type="audio/mpeg">
+            </audio>
+            </div>
+            <div class="Sender" onclick="SpieleSender(this.id)" id="Jazz Radio Classic Jazz" >
+            Jazz Radio Classic 
+            <audio class="AudioPlayer">
+                <source src="http://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3" type="audio/mpeg">
+            </audio>
+            </div>
+            <div class="Sender" onclick="SpieleSender(this.id)" id="Jazz Radio Swiss" >
+            Jazz Radio Swiss
+            <audio class="AudioPlayer">
+                <source src="https://stream.srg-ssr.ch/m/rsj/mp3_128" type="audio/mpeg">
+            </audio>
+            </div>
+            <div class="Sender" onclick="SpieleSender(this.id)" id="Radio 3 RTVE" >
+            Radio 3 RTVE
+            <audio class="AudioPlayer">
+            <source src="https://dispatcher.rndfnk.com/crtve/rner3/main/mp3/high" type="audio/mpeg">
+            </audio>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
